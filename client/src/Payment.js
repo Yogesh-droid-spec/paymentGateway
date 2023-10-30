@@ -18,7 +18,7 @@ function Payment() {
   useEffect(() => {
     fetch("/create-payment-intent", {
       method: "POST",
-      body: JSON.stringify({}),
+      // body: JSON.stringify({}),
     }).then(async (result) => {
       var { clientSecret } = await result.json();
       setClientSecret(clientSecret);
@@ -28,6 +28,8 @@ function Payment() {
   return (
     <>
       <h1>React Stripe and the Payment Element</h1>
+      {console.log(clientSecret)}
+      {console.log(stripePromise)}
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret }}>
           <CheckoutForm />
